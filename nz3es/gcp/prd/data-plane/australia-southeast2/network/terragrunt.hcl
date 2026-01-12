@@ -4,7 +4,8 @@ include "root" {
 }
 
 terraform {
-  source = "../../../../modules/vpc"
+  # Use relative path to the module
+  source = "../../../../../../modules/vpc"
 }
 
 locals {
@@ -17,5 +18,5 @@ inputs = {
   project_id  = include.root.locals.project_id
   region      = local.region
   name        = format("%s-vpc-%s", local.environment, local.region)
-  subnet_cidr = "10.1.0.0/24"
+  subnet_cidr = "10.0.0.0/24"
 }

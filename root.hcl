@@ -1,7 +1,8 @@
 # Root Terragrunt configuration - common settings for all environments
 # Edit the `bucket` value below to the GCS bucket you will use for Terraform state.
 # Set the environment variable GOOGLE_APPLICATION_CREDENTIALS with your service account JSON.
-
+#     GCP_PROJECT: iac-01
+#     GCP_REGION: australia-southeast2
 
 locals {
   project_id = get_env("GCP_PROJECT", "default-project")
@@ -16,16 +17,29 @@ locals {
   # Reverse for easy access to the last segments
   _reversed_components = reverse(local._path_components)
 
-  # Inferred values (if folder layout follows: .../<env>/<region>)
-  inferred_region      = local._reversed_components[0]
-  inferred_environment = local._reversed_components[1]
-
   # Allowed environments and allowed regions (explicit list for stricter checks)
+  # MUST be defined first before using in other locals
   allowed_environments = ["dev", "stg", "uat", "prd", "qa"]
   allowed_regions = [
     "australia-southeast2",
     "australia-southeast1"
   ]
+
+  # Inferred values - dynamically finds region and environment from path
+  # This approach scales to any folder depth (network, dns-zone, sql, cache, etc.)
+  # Examples:
+  #   .../stg/data-plane/australia-southeast2/network
+  #   .../stg/data-plane/australia-southeast2/dns-zone/nz3es-example-com
+  #   .../stg/data-plane/australia-southeast2/sql/cloudsql-instance
+  #   .../prd/australia-southeast2/cache/redis
+
+  # Find region: search through ALL path components for a match in allowed_regions
+  _region_search = [for comp in local._path_components : comp if contains(local.allowed_regions, comp)]
+  inferred_region = length(local._region_search) > 0 ? local._region_search[0] : "unknown-region"
+
+  # Find environment: search through ALL path components for a match in allowed_environments
+  _env_search = [for comp in local._path_components : comp if contains(local.allowed_environments, comp)]
+  inferred_environment = length(local._env_search) > 0 ? local._env_search[0] : "unknown-env"
 
   # Validation flags
   inferred_env_valid    = contains(local.allowed_environments, local.inferred_environment)
