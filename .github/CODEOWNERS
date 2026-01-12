@@ -1,0 +1,26 @@
+# CODEOWNERS - Define code ownership for automatic review assignment
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+* @esquare666
+
+# Root configuration - requires approval for any changes
+/root.hcl @esquare666
+
+# Terraform modules - critical infrastructure components
+/modules/ @esquare666
+
+# Production environment - requires extra scrutiny
+/nz3es/gcp/prd/ @esquare666
+
+# Staging environment
+/nz3es/gcp/stg/ @esquare666
+
+# Documentation
+*.md @esquare666
+/COMMANDS.md @esquare666
+/README.md @esquare666
+
+# CI/CD and automation
+/.github/ @esquare666
+/.gitignore @esquare666
