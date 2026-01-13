@@ -21,5 +21,6 @@ inputs = {
   labels = {
     environment = local.environment
     managed_by  = "atlantis"
+    owner       = "esquare666"
   }
 }
