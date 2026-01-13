@@ -20,6 +20,5 @@ inputs = {
   subnet_cidr = "10.1.0.0/24"
   labels = {
     environment = local.environment
-    managed_by  = "atlantis"
   }
 }
