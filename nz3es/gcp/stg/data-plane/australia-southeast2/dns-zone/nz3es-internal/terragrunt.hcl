@@ -64,6 +64,18 @@ inputs = {
       type    = "A"
       ttl     = 300
       records = ["10.1.0.102"]
+    },
+    {
+      name    = "api1.stg"
+      type    = "A"
+      ttl     = 300
+      records = ["10.1.0.103"]
+    },
+    {
+      name    = "api2.stg"
+      type    = "A"
+      ttl     = 300
+      records = ["10.1.0.104"]
     }
   ]
 }
