@@ -5,7 +5,7 @@ include "root" {
 
 terraform {
   # Use relative path to the module
-  source = "../../../../modules/vpc"
+  source = "../../../../../../modules/vpc"
 }
 
 locals {

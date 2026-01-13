@@ -1,0 +1,2 @@
+# Ignore CODEOWNERS from markdown linting (it's not a markdown file)
+.github/CODEOWNERS

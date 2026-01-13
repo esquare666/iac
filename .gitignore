@@ -1,11 +1,49 @@
+# Terragrunt
 .terragrunt-cache/
-*.tfstate
-*.tfstate.backup
+.terragrunt-debug.hcl
+
+# Terraform
 .terraform/
 .terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
 crash.log
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
-.terragrunt-debug.hcl       
+
+# Terraform variables (may contain sensitive data)
+*.tfvars
+*.tfvars.json
+secret.tfvars
+
+# Environment files
+.envrc
+.env
+
+# GCP
+.gcloud/
+
+# Terraform RC files
+.terraformrc
+terraform.rc
+
+# Atlantis
+.atlantis.yaml
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+
+# Archives
+*.zip
+*.tar.gz
+
+# Backups
+*.backup
+*.log
