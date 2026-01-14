@@ -47,6 +47,12 @@ inputs = {
       ttl     = 300
       records = ["10.1.0.20"]
     },
+    {
+      name    = "app1.stg"
+      type    = "A"
+      ttl     = 300
+      records = ["10.1.0.21"]
+    },
     # Example CNAME record
     {
       name    = "www.stg"
